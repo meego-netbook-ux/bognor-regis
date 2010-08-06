@@ -737,6 +737,64 @@ br_queue_get_repeat_mode (BrQueue                *queue,
 }
 
 static void
+get_duration_reply (DBusGProxy *proxy,
+                    int         OUT_duration,
+                    GError     *error,
+                    gpointer    userdata)
+{
+    struct _AsyncClosure *data = (struct _AsyncClosure *) userdata;
+    BrQueueGetDurationCallback cb;
+
+    cb = (BrQueueGetDurationCallback) (data->cb);
+
+    if (error) {
+        OUT_duration= 0;
+    }
+
+    if (cb) {
+        cb (data->queue, OUT_duration, error, data->userdata);
+    }
+
+    if (error) {
+        g_error_free (error);
+    }
+
+    g_free (data);
+}
+
+/**
+ * br_queue_get_duration:
+ * @queue: A #BrQueue
+ * @cb: The callback for when duration is returned
+ * @userdata: The data to be passed to @cb
+ *
+ * Requests the repeat-mode of the queue represented by @queue.
+ * This is an asynchronous call, and @cb will be called with @userdata whenever
+ * the repeat_mode has been returned.
+ */
+void
+br_queue_get_duration (BrQueue                *queue,
+                          BrQueueGetDurationCallback cb,
+                          gpointer                userdata)
+{
+    struct _AsyncClosure *data;
+    BrQueuePrivate *priv;
+
+    g_return_if_fail (IS_BR_QUEUE (queue));
+
+    priv = queue->priv;
+
+    data = g_new (struct _AsyncClosure, 1);
+    data->queue = queue;
+    data->cb = G_CALLBACK (cb);
+    data->userdata = userdata;
+
+    org_moblin_BognorRegis_Queue_get_duration_async (priv->proxy,
+                                                     get_duration_reply,
+                                                     data);
+}
+
+static void
 get_index_uri_reply (DBusGProxy *proxy,
                      char       *OUT_uri,
                      char       *OUT_mimetype,
@@ -1132,3 +1190,159 @@ br_queue_get_position (BrQueue                   *queue,
     org_moblin_BognorRegis_Queue_get_position_async (priv->proxy,
                                                      get_position_reply, data);
 }
+
+/**
+ * br_queue_set_mute:
+ * @queue: A #BrQueue
+ * @mute: to mute the playbin or not
+ *
+ * Requests to set playbin to mute state
+ * @mute is a boolean
+ * with TRUE means 'mute', FALSE means 'not mute'
+ */
+void
+br_queue_set_mute (BrQueue    *queue,
+                   gboolean    mute)
+{
+    BrQueuePrivate *priv;
+
+    g_return_if_fail (IS_BR_QUEUE (queue));
+
+    priv = queue->priv;
+    org_moblin_BognorRegis_Queue_set_mute_async (priv->proxy, mute,
+                                                 async_reply, queue);
+}
+
+static void
+get_mute_reply (DBusGProxy *proxy,
+                gboolean    OUT_mute,
+                GError     *error,
+                gpointer    userdata)
+{
+    struct _AsyncClosure *data = (struct _AsyncClosure *) userdata;
+    BrQueueGetMuteCallback cb;
+
+    cb = (BrQueueGetMuteCallback) (data->cb);
+
+    if (error) {
+        OUT_mute = 0.0;
+    }
+
+    cb (data->queue, OUT_mute, error, data->userdata);
+
+    if (error) {
+        g_error_free (error);
+    }
+
+    g_free (data);
+}
+
+/**
+ * br_queue_get_mute:
+ * @queue: A #BrQueue
+ * @cb: The callback for when the mute status is returned
+ * @userdata: The data to be passed to @cb
+ *
+ * Requests the mute status of @queue
+ * This is an asynchronous call and @cb will be called with @userdata when the
+ * mute is returned
+ */
+void
+br_queue_get_mute (BrQueue                   *queue,
+                   BrQueueGetMuteCallback     cb,
+                   gpointer                   userdata)
+{
+    struct _AsyncClosure *data;
+    BrQueuePrivate *priv;
+
+    g_return_if_fail (IS_BR_QUEUE (queue));
+
+    priv = queue->priv;
+
+    data = g_new (struct _AsyncClosure, 1);
+    data->queue = queue;
+    data->cb = G_CALLBACK (cb);
+    data->userdata = userdata;
+
+    org_moblin_BognorRegis_Queue_get_mute_async (priv->proxy,
+                                                 get_mute_reply, data);
+}
+
+/**
+ * br_queue_set_volume:
+ * @queue: A #BrQueue
+ * @volume: volume level
+ *
+ * Requests to set playbin volume level
+ * audio stream volume [0.0, 10.0]
+ *
+ */
+void
+br_queue_set_volume (BrQueue    *queue,
+                     double      volume)
+{
+    BrQueuePrivate *priv;
+
+    g_return_if_fail (IS_BR_QUEUE (queue));
+
+    priv = queue->priv;
+    org_moblin_BognorRegis_Queue_set_volume_async (priv->proxy, volume,
+                                                   async_reply, queue);
+    g_printf("set volume %f\n", volume);
+}
+
+static void
+get_volume_reply (DBusGProxy *proxy,
+                  double      OUT_volume,
+                  GError     *error,
+                  gpointer    userdata)
+{
+    struct _AsyncClosure *data = (struct _AsyncClosure *) userdata;
+    BrQueueGetVolumeCallback cb;
+
+    cb = (BrQueueGetVolumeCallback) (data->cb);
+
+    if (error) {
+        OUT_volume = 1.0;
+    }
+
+    cb (data->queue, OUT_volume, error, data->userdata);
+
+    if (error) {
+        g_error_free (error);
+    }
+
+    g_free (data);
+}
+
+/**
+ * br_queue_get_volume:
+ * @queue: A #BrQueue
+ * @cb: The callback for when the volume level is returned
+ * @userdata: The data to be passed to @cb
+ *
+ * Requests the volume level of @queue
+ * This is an asynchronous call and @cb will be called with @userdata when the
+ * volume is returned
+ */
+void
+br_queue_get_volume (BrQueue                   *queue,
+                     BrQueueGetVolumeCallback   cb,
+                     gpointer                   userdata)
+{
+    struct _AsyncClosure *data;
+    BrQueuePrivate *priv;
+
+    g_return_if_fail (IS_BR_QUEUE (queue));
+
+    priv = queue->priv;
+
+    data = g_new (struct _AsyncClosure, 1);
+    data->queue = queue;
+    data->cb = G_CALLBACK (cb);
+    data->userdata = userdata;
+
+    org_moblin_BognorRegis_Queue_get_volume_async (priv->proxy,
+                                                   get_volume_reply, data);
+}
+

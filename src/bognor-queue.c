@@ -499,6 +499,49 @@ bognor_queue_previous (BognorQueue *queue,
     return TRUE;
 }
 
+gboolean bognor_queue_set_mute (BognorQueue   *queue,
+                                gboolean       mute,
+                                GError       **error)
+{
+    BognorQueueClass *klass = BOGNOR_QUEUE_GET_CLASS (queue);
+    BognorQueuePrivate *priv = queue->priv;
+    if (mute)
+        klass->set_mute(queue, TRUE);
+    else
+        klass->set_mute(queue, FALSE);
+    return TRUE;
+}
+
+gboolean bognor_queue_get_mute (BognorQueue   *queue,
+                                gboolean      *mute,
+                                GError       **error)
+{
+    BognorQueueClass *klass = BOGNOR_QUEUE_GET_CLASS (queue);
+    BognorQueuePrivate *priv = queue->priv;
+    *mute = klass->get_mute (queue);
+    return TRUE;
+}
+
+gboolean bognor_queue_set_volume (BognorQueue   *queue,
+                                  double         volume,
+                                  GError       **error)
+{
+    BognorQueueClass *klass = BOGNOR_QUEUE_GET_CLASS (queue);
+    BognorQueuePrivate *priv = queue->priv;
+    klass->set_volume (queue, volume);
+    return TRUE;
+}
+
+gboolean bognor_queue_get_volume (BognorQueue   *queue,
+                                  double        *volume,
+                                  GError       **error)
+{
+    BognorQueueClass *klass = BOGNOR_QUEUE_GET_CLASS (queue);
+    BognorQueuePrivate *priv = queue->priv;
+    *volume = klass->get_volume(queue);
+    return TRUE;
+}
+
 gboolean
 bognor_queue_set_position (BognorQueue *queue,
                            double       position,
@@ -920,7 +963,7 @@ bognor_queue_get_index_uri (BognorQueue *queue,
 
 gboolean
 bognor_queue_set_repeat_mode (BognorQueue *queue,
-                              int           mode,
+                              int          mode,
                               GError     **error)
 {
     BognorQueuePrivate *priv = queue->priv;
@@ -938,12 +981,22 @@ bognor_queue_set_repeat_mode (BognorQueue *queue,
 
 gboolean
 bognor_queue_get_repeat_mode (BognorQueue *queue,
-                              int          *mode,
+                              int         *mode,
                               GError     **error)
 {
     BognorQueuePrivate *priv = queue->priv;
 
     *mode = priv->mode;
+    return TRUE;
+}
+
+gboolean
+bognor_queue_get_duration (BognorQueue *queue,
+                           int         *duration,
+                           GError     **error)
+{
+    BognorQueuePrivate *priv = queue->priv;
+    *duration = bognor_queue_item_get_duration(priv->current_position->data);
     return TRUE;
 }
 

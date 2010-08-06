@@ -80,6 +80,12 @@ struct _BognorQueueClass
     void (*set_position) (BognorQueue *queue,
                           double       position);
     double (*get_position) (BognorQueue *queue);
+    void (*set_mute) (BognorQueue *queue,
+                      gboolean     mute);
+    gboolean (*get_mute) (BognorQueue *queue);
+    void (*set_volume) (BognorQueue *queue,
+                        double       volume);
+    double (*get_volume) (BognorQueue *queue);
     void (*add_item_to_recent) (BognorQueue     *queue,
                                 BognorQueueItem *item);
 };
@@ -90,70 +96,84 @@ void bognor_queue_notify_unknown_format (BognorQueue     *queue,
                                          BognorQueueItem *item);
 void bognor_queue_emit_position_changed (BognorQueue *queue,
                                          double       position);
-gboolean bognor_queue_stop (BognorQueue           *queue,
-                            GError         **error);
-gboolean bognor_queue_play (BognorQueue           *queue,
-                            GError         **error);
-gboolean bognor_queue_next (BognorQueue           *queue,
-                            GError         **error);
-gboolean bognor_queue_previous (BognorQueue       *queue,
-                                GError     **error);
+gboolean bognor_queue_stop (BognorQueue      *queue,
+                            GError          **error);
+gboolean bognor_queue_play (BognorQueue      *queue,
+                            GError          **error);
+gboolean bognor_queue_next (BognorQueue     *queue,
+                            GError          **error);
+gboolean bognor_queue_previous (BognorQueue  *queue,
+                                GError      **error);
 gboolean bognor_queue_set_position (BognorQueue   *queue,
-                                    double   position,
-                                    GError **error);
+                                    double         position,
+                                    GError       **error);
 gboolean bognor_queue_get_position (BognorQueue   *queue,
-                                    double  *position,
-                                    GError **error);
-
-gboolean bognor_queue_append_uris (BognorQueue       *queue,
-                                   int          count,
-                                   const char **uris,
-                                   const char **mimetypes,
-                                   GError     **error);
-gboolean bognor_queue_insert_uris (BognorQueue       *queue,
-                                   int          position,
-                                   int          count,
-                                   const char **uris,
-                                   const char **mimetype,
-                                   GError     **error);
-gboolean bognor_queue_remove_range (BognorQueue      *queue,
-                                    int         index,
-                                    int         count,
-                                    GError    **error);
-gboolean bognor_queue_move_item (BognorQueue *queue,
-                                 int          old_position,
-                                 int          new_position,
-                                 GError     **error);
-
-gboolean bognor_queue_set_index (BognorQueue        *queue,
-                                 int           index,
-                                 GError      **error);
-gboolean bognor_queue_get_current_index (BognorQueue        *queue,
-                                         int          *index,
-                                         GError      **error);
-gboolean bognor_queue_get_index (BognorQueue        *queue,
-                                 int          *index,
-                                 GError      **error);
-gboolean bognor_queue_set_repeat_mode (BognorQueue        *queue,
-                                       int           mode,
-                                       GError      **error);
-gboolean bognor_queue_get_repeat_mode (BognorQueue        *queue,
-                                       int          *mode,
-                                       GError      **error);
-gboolean bognor_queue_get_index_uri (BognorQueue    *queue,
-                                     int       index,
-                                     char    **uri,
-                                     char    **mimetype,
-                                     GError  **error);
-gboolean bognor_queue_list_uris (BognorQueue         *queue,
-                                 char       ***uris,
-                                 GError      **error);
-gboolean bognor_queue_get_state (BognorQueue         *queue,
-                                 int          *state,
-                                 GError      **error);
-gboolean bognor_queue_get_name (BognorQueue          *queue,
-                                char         **name,
+                                    double        *position,
+                                    GError       **error);
+gboolean bognor_queue_set_mute (BognorQueue   *queue,
+                                gboolean       mute,
                                 GError       **error);
+gboolean bognor_queue_get_mute (BognorQueue   *queue,
+                                gboolean      *mute,
+                                GError       **error);
+gboolean bognor_queue_set_volume (BognorQueue   *queue,
+                                  double         volume,
+                                  GError       **error);
+gboolean bognor_queue_get_volume (BognorQueue   *queue,
+                                  double        *volume,
+                                  GError       **error);
+gboolean bognor_queue_append_uris (BognorQueue   *queue,
+                                   int            count,
+                                   const char   **uris,
+                                   const char   **mimetypes,
+                                   GError       **error);
+gboolean bognor_queue_insert_uris (BognorQueue   *queue,
+                                   int            position,
+                                   int            count,
+                                   const char   **uris,
+                                   const char   **mimetype,
+                                   GError       **error);
+gboolean bognor_queue_remove_range (BognorQueue   *queue,
+                                    int            index,
+                                    int            count,
+                                    GError       **error);
+gboolean bognor_queue_move_item (BognorQueue   *queue,
+                                 int            old_position,
+                                 int            new_position,
+                                 GError       **error);
+
+gboolean bognor_queue_set_index (BognorQueue   *queue,
+                                 int            index,
+                                 GError       **error);
+gboolean bognor_queue_get_current_index (BognorQueue   *queue,
+                                         int           *index,
+                                         GError       **error);
+gboolean bognor_queue_get_index (BognorQueue   *queue,
+                                 int           *index,
+                                 GError       **error);
+gboolean bognor_queue_set_repeat_mode (BognorQueue   *queue,
+                                       int            mode,
+                                       GError       **error);
+gboolean bognor_queue_get_repeat_mode (BognorQueue   *queue,
+                                       int           *mode,
+                                       GError       **error);
+gboolean bognor_queue_get_duration (BognorQueue      *queue,
+                                    int              *duration,
+                                    GError          **error);
+gboolean bognor_queue_get_index_uri (BognorQueue    *queue,
+                                     int             index,
+                                     char          **uri,
+                                     char          **mimetype,
+                                     GError        **error);
+gboolean bognor_queue_list_uris (BognorQueue        *queue,
+                                 char             ***uris,
+                                 GError            **error);
+gboolean bognor_queue_get_state (BognorQueue        *queue,
+                                 int                *state,
+                                 GError            **error);
+gboolean bognor_queue_get_name (BognorQueue          *queue,
+                                char                **name,
+                                GError              **error);
 int bognor_queue_get_count (BognorQueue *queue);
 
 G_END_DECLS

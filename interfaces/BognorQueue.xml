@@ -27,6 +27,26 @@
       <arg type="i" name="index" direction="out" />
     </method>
 
+    <method name="GetDuration">
+      <arg type="i" name="duration" direction="out" />
+    </method>
+
+    <method name="SetVolume">
+      <arg type="d" name="volume" direction="in" />
+    </method>
+
+    <method name="GetVolume">
+      <arg type="d" name="volume" direction="out" />
+    </method>
+
+    <method name="SetMute">
+      <arg type="b" name="mute" direction="in" />
+    </method>
+
+    <method name="GetMute">
+      <arg type="b" name="mute" direction="out" />
+    </method>
+
     <method name="GetRepeatMode">
       <arg type="i" name="repeat_mode" direction="out" />
     </method>

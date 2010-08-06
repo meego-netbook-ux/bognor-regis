@@ -73,6 +73,14 @@ typedef void (*BrQueueGetPositionCallback) (BrQueue      *queue,
                                             double        position,
                                             const GError *error,
                                             gpointer      userdata);
+typedef void (*BrQueueGetMuteCallback) (BrQueue      *queue,
+                                        gboolean      mute,
+                                        const GError *error,
+                                        gpointer      userdata);
+typedef void (*BrQueueGetVolumeCallback) (BrQueue      *queue,
+                                          double        volume,
+                                          const GError *error,
+                                          gpointer      userdata);
 typedef void (*BrQueueGetStateCallback) (BrQueue      *queue,
                                          BrQueueState  state,
                                          const GError *error,
@@ -80,6 +88,10 @@ typedef void (*BrQueueGetStateCallback) (BrQueue      *queue,
 typedef void (*BrQueueGetIndexUriCallback) (BrQueue      *queue,
                                             const char   *uri,
                                             const char   *mimetype,
+                                            const GError *error,
+                                            gpointer      userdata);
+typedef void (*BrQueueGetDurationCallback) (BrQueue      *queue,
+                                            int           duration_in_sec,
                                             const GError *error,
                                             gpointer      userdata);
 typedef void (*BrQueueGetRepeatModeCallback) (BrQueue      *queue,
@@ -115,7 +127,16 @@ void br_queue_set_position (BrQueue    *queue,
 void br_queue_get_position (BrQueue                   *queue,
                             BrQueueGetPositionCallback cb,
                             gpointer                   userdata);
-
+void br_queue_set_mute (BrQueue    *queue,
+                        gboolean    mute);
+void br_queue_get_mute (BrQueue                   *queue,
+                        BrQueueGetMuteCallback cb,
+                        gpointer                   userdata);
+void br_queue_set_volume (BrQueue    *queue,
+                          double      volume);
+void br_queue_get_volume (BrQueue                   *queue,
+                          BrQueueGetVolumeCallback cb,
+                          gpointer                   userdata);
 void br_queue_get_state (BrQueue                *queue,
                          BrQueueGetStateCallback cb,
                          gpointer                userdata);
@@ -124,6 +145,9 @@ void br_queue_set_index (BrQueue *queue,
 void br_queue_get_index (BrQueue                *queue,
                          BrQueueGetIndexCallback cb,
                          gpointer                userdata);
+void br_queue_get_duration (BrQueue                *queue,
+                            BrQueueGetDurationCallback cb,
+                            gpointer                     userdata);
 void br_queue_get_repeat_mode (BrQueue                *queue,
                          BrQueueGetRepeatModeCallback cb,
                          gpointer                     userdata);

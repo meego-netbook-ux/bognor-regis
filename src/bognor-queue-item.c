@@ -177,6 +177,7 @@ bognor_queue_item_new_from_item (BgrItem *bgr)
     priv->mimetype = (char *) bgr_item_get_mimetype (bgr);
 
     priv->metadata = bgr_to_didl_metadata (bgr);
+    priv->duration = 0;
 
     return item;
 }
@@ -196,6 +197,7 @@ bognor_queue_item_new (const char *uri,
     priv->uri = g_strdup (uri);
     priv->mimetype = g_strdup (mimetype);
     priv->metadata = g_strdup (metadata);
+    priv->duration = 0;
 
     return item;
 }

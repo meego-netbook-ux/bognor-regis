@@ -1,5 +1,6 @@
 #include <glib.h>
 #include <gio/gio.h>
+#include <stdlib.h>
 
 #include <bognor-regis/br-queue.h>
 
@@ -41,6 +42,26 @@ get_int_cb(BrQueue      *queue,
     g_main_loop_quit (mainloop);
 }
 
+static void
+get_gboolean_cb(BrQueue      *queue,
+               const gboolean value,
+               const GError  *error,
+               gpointer       userdata)
+{
+    g_print("return:%d\n", value);
+    g_main_loop_quit (mainloop);
+}
+
+static void
+get_double_cb(BrQueue        *queue,
+              const double    value,
+              const GError   *error,
+              gpointer        userdata)
+{
+    g_print("return:%f\n", value);
+    g_main_loop_quit (mainloop);
+}
+
 int
 main (int    argc,
       char **argv)
@@ -55,7 +76,8 @@ main (int    argc,
 
     if (argv[1] == NULL) {
         g_print ("Usage: bognor-regis <uri | play | stop | ls |list-queues | remove |\n"
-                 "                     get-index | get-mode | set-mode [mode] >\n");
+                 "                     get-index | get-mode | get-duration | set-mode [mode] >\n"
+                 "                     get-mute | set-mute | get-volume | set-volume [volume] >\n");
         /* probably also print current list */
         return -1;
     }
@@ -76,10 +98,29 @@ main (int    argc,
         return 0;
     } else if (g_str_equal (argv[1], "list-queues")) {
         g_print ("**FIXME**\n");
+    } else if (g_str_equal (argv[1], "set-mute")) {
+        br_queue_set_mute(local_queue, atoi(argv[2]));
+    } else if (g_str_equal (argv[1], "set-volume")) {
+        br_queue_set_volume(local_queue, atof(argv[2]));
     } else if (g_str_equal (argv[1], "set-mode")) {
         br_queue_set_repeat_mode(local_queue, atoi(argv[2]));
+    } else if (g_str_equal (argv[1], "get-mute")) {
+        br_queue_get_mute(local_queue, get_gboolean_cb, NULL);
+        mainloop = g_main_loop_new (NULL, FALSE);
+        g_main_loop_run (mainloop);
+        return 0;
+    } else if (g_str_equal (argv[1], "get-volume")) {
+        br_queue_get_volume(local_queue, get_double_cb, NULL);
+        mainloop = g_main_loop_new (NULL, FALSE);
+        g_main_loop_run (mainloop);
+        return 0;
     } else if (g_str_equal (argv[1], "get-mode")) {
         br_queue_get_repeat_mode(local_queue, get_int_cb, NULL);
+        mainloop = g_main_loop_new (NULL, FALSE);
+        g_main_loop_run (mainloop);
+        return 0;
+    } else if (g_str_equal (argv[1], "get-duration")) {
+        br_queue_get_duration(local_queue, get_int_cb, NULL);
         mainloop = g_main_loop_new (NULL, FALSE);
         g_main_loop_run (mainloop);
         return 0;

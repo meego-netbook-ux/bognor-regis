@@ -186,6 +186,51 @@ set_playing (BognorQueue *queue,
 }
 
 static void
+set_mute (BognorQueue *queue,
+          gboolean     mute)
+{
+if (mute)
+    g_print("true set mute %d\n", mute);
+else
+    g_print("false set mute %d\n", mute);
+
+    BognorLocalQueue *local = (BognorLocalQueue *) queue;
+    BognorLocalQueuePrivate *priv = local->priv;
+    g_object_set(G_OBJECT(priv->playbin), "mute", mute, NULL);
+}
+
+static gboolean
+get_mute (BognorQueue *queue)
+{
+    BognorLocalQueue *local = (BognorLocalQueue *) queue;
+    BognorLocalQueuePrivate *priv = local->priv;
+    gboolean mute;
+    g_object_get(G_OBJECT(priv->playbin), "mute", &mute, NULL);
+    return mute;
+}
+
+static void
+set_volume (BognorQueue *queue,
+            double       volume)
+{
+    BognorLocalQueue *local = (BognorLocalQueue *) queue;
+    BognorLocalQueuePrivate *priv = local->priv;
+    g_object_set(G_OBJECT(priv->playbin), "volume", volume, NULL);
+    g_print("set volume %f\n", volume);
+}
+
+static double
+get_volume (BognorQueue *queue)
+{
+    BognorLocalQueue *local = (BognorLocalQueue *) queue;
+    BognorLocalQueuePrivate *priv = local->priv;
+    double v;
+    g_object_get(G_OBJECT(priv->playbin), "volume", &v, NULL);
+    g_print("get volume %f\n", v);
+    return v;
+}
+
+static void
 set_position (BognorQueue *queue,
               double       position)
 {
@@ -229,6 +274,10 @@ bognor_local_queue_class_init (BognorLocalQueueClass *klass)
     q_class->set_playing = set_playing;
     q_class->set_position = set_position;
     q_class->get_position = get_position;
+    q_class->set_volume = set_volume;
+    q_class->get_volume = get_volume;
+    q_class->set_mute = set_mute;
+    q_class->get_mute = get_mute;
     q_class->add_item_to_recent = add_item_to_recent;
 
     g_type_class_add_private (klass, sizeof (BognorLocalQueuePrivate));
@@ -352,7 +401,7 @@ make_playbin (BognorLocalQueue *queue)
     GstElement *fakesink;
     GstBus *bus;
 
-    priv->playbin = gst_element_factory_make ("playbin", "playbin");
+    priv->playbin = gst_element_factory_make ("playbin2", "playbin");
     priv->error_occured = FALSE;
     priv->audio_set = FALSE;
 
