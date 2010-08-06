@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+
+  <device>
+    <deviceType>urn:schemas-upnp-org:device:MediaRenderer:1</deviceType>
+    <friendlyName>Moblin</friendlyName>
+    <manufacturer>Intel Corporation</manufacturer>
+    <modelName>Bognor Regis</modelName>
+    <UDN>uuid:446b2118-fa60-4f6d-9aca-bca8ccc32eab</UDN>
+
+    <iconList>
+      <icon>
+	<mimetype>image/png</mimetype>
+	<width>48</width>
+	<height>48</height>
+	<depth>24</depth>
+	<url>bird_icon.png</url>
+      </icon>
+    </iconList>
+
+    <serviceList>
+      <service>
+	<serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
+	<SCPDURL>/RenderingControl2.xml</SCPDURL>
+	<controlURL>/RenderingControl/Control</controlURL>
+	<eventSubURL>/RenderingControl/Event</eventSubURL>
+      </service>
+
+      <service>
+	<serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+	<SCPDURL>/ConnectionManager2.xml</SCPDURL>
+	<controlURL>/ConnectionManager/Control</controlURL>
+	<eventSubURL>/ConnectionManager/Event</eventSubURL>
+      </service>
+
+      <service>
+	<serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
+	<SCPDURL>/AVTransport2.xml</SCPDURL>
+	<controlURL>/AVTransport/Control</controlURL>
+	<eventSubURL>/AVTransport/Event</eventSubURL>
+      </service>
+    </serviceList>
+  </device>
+</root>

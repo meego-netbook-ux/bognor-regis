@@ -1,0 +1,33 @@
+# Translation of bognor-regis to Indonesian.
+# Copyright (C) 2009 Andika Triwidada
+# This file is distributed under the same license as the PACKAGE package.
+# Andika Triwidada <andika@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: bognor-regis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-10 10:28+0000\n"
+"PO-Revision-Date: 2009-08-25 17:13+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/bognor-local-queue-gst.c:376 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Antrian main"
+
+#: ../src/bognor-queue.c:231
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "Maaf, kami tak bisa mainkan %s, karena kami tak punya plugin yang cocok. Anda dapat mencoba mencari \"gstreamer codecs\" di web."
+
+#: ../src/bognor-queue.c:235
+msgid "We can't play this"
+msgstr "Kami tak bisa mainkain ini"
+
+#: ../src/bognor-queue.c:229
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "Maaf, kami tak bisa mainkan %s, karena kami tak punya plugin yang cocok."

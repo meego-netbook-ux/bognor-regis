@@ -1,0 +1,10 @@
+Lightning code overview:
+
+bognor-regis/
+	Library that handles access to a remote queue
+	manager implementing the BognorRegis interfaces
+interfaces/
+	specification of those D-Bus interfaces
+src/
+	implementation of the default queue manager
+

@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-11 22:54+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../src/bognor-local-queue-gst.c:376
+#: ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "播放佇列"
+
+#: ../src/bognor-queue.c:220
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "抱歉，由於我們沒有正確的外掛程式，所以我們無法播放 %s。"
+
+#: ../src/bognor-queue.c:222
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "抱歉，由於我們沒有正確的外掛程式，所以我們無法播放 %s。你可以嘗試在網路上搜尋 ❝gstreamer codecs❞。"
+
+#: ../src/bognor-queue.c:226
+msgid "We can't play this"
+msgstr "我們無法播放它"
+

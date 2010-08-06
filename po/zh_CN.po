@@ -1,0 +1,39 @@
+# bognor.
+# Copyright Intel (C) 2009
+# This file is distributed under the same license as the PACKAGE package.
+# Zhu Yanhai <yanhai.zhu@linux.intel.com>, 2009
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: bognor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-11 22:54+0000\n"
+"PO-Revision-Date: 2009-09-18 10:28-0800\n"
+"Last-Translator: GLS <tomas.galicia@intel.com>\n"
+"Language-Team: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: ../src/bognor-local-queue-gst.c:376 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "播放队列"
+
+#: ../src/bognor-queue.c:222
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr ""
+"抱歉,因为缺少合适的插件,我们不能播放 %s. 也许您可以试着以\n"
+"'gstreamer codecs'为关键词在网络上搜索一下"
+
+#: ../src/bognor-queue.c:226
+msgid "We can't play this"
+msgstr "目前我们不能播放这个文件"
+
+#: ../src/bognor-queue.c:220
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "抱歉，因为缺少合适的插件，我们不能播放 %s。"

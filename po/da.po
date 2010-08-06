@@ -1,0 +1,40 @@
+# Danish translation of bognor-regis
+# Copyright (C) 2009
+# This file is distributed under the same license as the bognor-regis package.
+# Kris Thomsen <lakristho@gmail.com>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bognor-regis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-14 09:34+0000\n"
+"PO-Revision-Date: 2010-04-15 07:34+0100\n"
+"Last-Translator: Jon Hedemann <tradomusnordic@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../src/bognor-local-queue-gst.c:376
+#: ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Afspilningskø"
+
+#: ../src/bognor-queue.c:229
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "Beklager, men vi kan ikke afspille %s, fordi vi ikke har det korrekte plugin."
+
+#: ../src/bognor-queue.c:231
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "Beklager, men vi kan ikke afspille %s, fordi vi ikke har det korrekte plugin. Prøv at søge efter ❝gstreamer codecs❞ på internettet."
+
+#: ../src/bognor-queue.c:235
+msgid "We can't play this"
+msgstr "Vi kan ikke afspille denne fil"
+

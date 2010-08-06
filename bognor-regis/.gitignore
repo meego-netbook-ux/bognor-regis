@@ -1,0 +1,6 @@
+bognor-queue-bindings.h
+br-iface-player-glue.h
+br-marshal.c
+br-marshal.h
+stamp-bognor-queue-bindings.h
+stamp-br-iface-player-glue.h

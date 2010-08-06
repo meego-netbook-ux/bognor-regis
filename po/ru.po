@@ -1,0 +1,38 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-03 09:32+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alexander Mineev <alexander.g.mineev@intel.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: Russia\n"
+
+#: ../src/bognor-local-queue-gst.c:386 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Список для воспроизведения"
+
+#: ../src/bognor-queue.c:285
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr ""
+"К сожалению, файл %s не возможно воспроизвести по причине отсутствия нужного "
+"плагина."
+
+#: ../src/bognor-queue.c:287
+#, c-format
+msgid ""
+"Sorry, we can't play %s, as we don't have the correct plugin. You could try "
+"searching for ❝gstreamer codecs❞ on the web."
+msgstr ""
+"К сожалению, файл %s не возможно воспроизвести по причине отсутствия нужного "
+"кодека. Вы можете попробовать найти ❝кодеки gstreamer❞ в Интернете."
+
+#: ../src/bognor-queue.c:291
+msgid "We can't play this"
+msgstr "Невозможно вопроизвести "

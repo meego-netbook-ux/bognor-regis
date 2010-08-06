@@ -1,0 +1,34 @@
+# Italian translation of bognor-regis.
+# Copyright (C) 2009 the bognor-regis copyright holder
+# This file is distributed under the same license as the bognor-regis package.
+# Milo Casagrande <milo@ubuntu.com>, 2009
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: bognor-regis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-11 22:54+0000\n"
+"PO-Revision-Date: 2009-09-04 16:17-0800\n"
+"Last-Translator: GLS\n"
+"Language-Team: Itaian <tp@lists.linux.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/bognor-local-queue-gst.c:376 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Riproduzione"
+
+#: ../src/bognor-queue.c:222
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "Impossibile riprodurre %s poiché non è disponibile il plugin corretto. È possibile eseguire una ricerca per «gstreamer codecs» sul web."
+
+#: ../src/bognor-queue.c:226
+msgid "We can't play this"
+msgstr "Impossibile riprodurre questo"
+
+#: ../src/bognor-queue.c:220
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "Impossibile riprodurre %s poiché non è disponibile il plugin corretto."

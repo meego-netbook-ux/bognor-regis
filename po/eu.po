@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Mikel Pascual Aldabaldetreku <mikel.paskual@gmail.com>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-28 15:16+0000\n"
+"PO-Revision-Date: 2009-10-14 14:51+0100\n"
+"Last-Translator: Mikel Pascual Aldabaldetreku <mikel.paskual@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/bognor-local-queue-gst.c:357 ../src/bognor-local-queue-helix.c:329
+msgid "Playqueue"
+msgstr "Erreprodukzio-zerrenda"
+
+#: ../src/bognor-queue.c:695
+#, c-format
+msgid ""
+"Sorry, we can't play %s, as we don't have the correct plugin. You could try "
+"searching for ❝gstreamer codecs❞ on the web."
+msgstr ""
+"Lastima, ezin dugu %s erreproduzitu, ez daukagu-eta plugin egokia. "
+"❝gstreamer codec❞-ak bilatu beharko zenituzke interneten."
+
+#: ../src/bognor-queue.c:698
+msgid "We can't play this"
+msgstr "Ezin dugu hau erreproduzitu"

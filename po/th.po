@@ -1,0 +1,31 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: bogor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-09 19:10+0000\n"
+"PO-Revision-Date: 2009-08-19 14:02+0700\n"
+"Last-Translator: Anuchit Chalothorn <anoochit@gmail.com>\n"
+"Language-Team: Thai <thai-l10n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Thai\n"
+"X-Poedit-Country: THAILAND\n"
+
+#: ../src/bognor-local-queue-gst.c:361 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "ลำดับการเล่น"
+
+#: ../src/bognor-queue.c:724
+msgid "We can't play this"
+msgstr "ไม่สามารถเล่นได้"
+
+#: ../src/bognor-queue.c:721
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "เสียใจด้วย เราไม่สามารถเล่น %s เพราะเราไม่มีปลักอินที่ถูกต้อง คุณควรลองค้นหา ❝gstreamer codecs❞ จากเว็บ"

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/">
+  <interface name="org.moblin.BognorRegis.QueueManager">
+    <method name="ListQueues">
+      <arg type="as" name="queue_paths" direction="out" />
+    </method>
+
+    <signal name="QueueCreated">
+      <arg type="s" name="queue_path" />
+    </signal>
+
+    <signal name="QueueDestroyed">
+      <arg type="s" name="queue_path" />
+    </signal>
+  </interface>
+</node>

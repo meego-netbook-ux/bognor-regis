@@ -1,0 +1,38 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Moblin Bognor Regis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-26 03:41+0000\n"
+"PO-Revision-Date: 2009-11-19 15:59-0800\n"
+"Last-Translator: Margie Foster <margie@linux.intel.com>\n"
+"Language-Team: British English <margie@linux.intel.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: UNITED KINGDOM\n"
+
+#: ../src/bognor-local-queue-gst.c:376 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Playqueue"
+
+#: ../src/bognor-queue.c:223
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+
+#: ../src/bognor-queue.c:227
+msgid "We can't play this"
+msgstr "We can't play this"
+
+#: ../src/bognor-queue.c:221
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "Sorry, we can't play %s, as we don't have the correct plugin. "

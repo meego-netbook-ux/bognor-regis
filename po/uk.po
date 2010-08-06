@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-28 15:16+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Oleksii Baranov <aleksey.baranov@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Ukrainian\n"
+"X-Poedit-Country: Ukraine\n"
+
+#: ../src/bognor-local-queue-gst.c:357 ../src/bognor-local-queue-helix.c:329
+msgid "Playqueue"
+msgstr "Плейлист"
+
+#: ../src/bognor-queue.c:695
+#, c-format
+msgid ""
+"Sorry, we can't play %s, as we don't have the correct plugin. You could try "
+"searching for ❝gstreamer codecs❞ on the web."
+msgstr ""
+"На жаль, ми не можемо грати %s, тому що в нас немає потрібного плагіну. Ви "
+"можете спробувати пошукати ❝кодеки gstreamer❞ в Інтернеті."
+
+#: ../src/bognor-queue.c:698
+msgid "We can't play this"
+msgstr "Ми не можемо грати це. "

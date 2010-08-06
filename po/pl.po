@@ -1,0 +1,40 @@
+# pl locale
+# Copyright (C) 2009 Intel Corporation
+# This file is distributed under the same license as the bognor-regis package.
+# Andrzej Zaborowski <andrew.zaborowski@intel.com>, 2009.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Moblin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-11 22:54+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Andrzej Zaborowski <andrew.zaborowski@intel.com>\n"
+"Language-Team: Moblin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Language: Polish\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+# Translated as playlist. The literal translation would be "kolejka
+# odtwarzania" but I'm not sure whether it's worth inventing this term to
+# account for the small difference between playlist and playqueue.
+#: ../src/bognor-local-queue-gst.c:376 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Playlista"
+
+#: ../src/bognor-queue.c:222
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "Niestety nie możemy puścić %s bo nie mamy odpowiedniej wtyczki. Możesz spróbować wyszukać ❝gstreamer codecs❞ na www."
+
+#: ../src/bognor-queue.c:226
+msgid "We can't play this"
+msgstr "Nie można odtworzyć"
+
+#: ../src/bognor-queue.c:220
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "Niestety nie możemy puścić %s, bo nie mamy odpowiedniej wtyczki."

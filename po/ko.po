@@ -1,0 +1,33 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-01 10:33+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: GLSKOR_Sook <hyang-sookx.sohn@intel.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../src/bognor-local-queue-gst.c:376 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "재생줄"
+
+#: ../src/bognor-queue.c:223
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "죄송합니다. 적절한 플러그인이 없어서 %s(을)를 재생할 수 없습니다. 웹사이트에서 \"gstreamer codecs\"를 찾아보십시오."
+
+#: ../src/bognor-queue.c:227
+msgid "We can't play this"
+msgstr "재생할 수 없습니다."
+
+#: ../src/bognor-queue.c:221
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "죄송합니다. 적절한 플러그인이 없어서 %s(을)를 재생할 수 없습니다."

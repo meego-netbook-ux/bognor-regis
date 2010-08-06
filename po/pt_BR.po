@@ -1,0 +1,40 @@
+# GLS_PTB <gaborx.k.becht@intel.com>, 2009.
+# Og Maciel <ogmaciel@gnome.org>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-28 09:34+0000\n"
+"PO-Revision-Date: 2009-11-09 14:10-0500\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
+"Language-Team: Moblin <l10n@moblin.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../src/bognor-local-queue-gst.c:386 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Lista de reprodução"
+
+#: ../src/bognor-queue.c:285
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr ""
+"Desculpe, não podemos reproduzir %s porque não temos o plugin correto. "
+
+#: ../src/bognor-queue.c:287
+#, c-format
+msgid ""
+"Sorry, we can't play %s, as we don't have the correct plugin. You could try "
+"searching for ❝gstreamer codecs❞ on the web."
+msgstr ""
+"Desculpe, não podemos reproduzir %s porque não temos o plug-in correto. "
+"Tente procurar por \"gstreamer codecs\" na web."
+
+#: ../src/bognor-queue.c:291
+msgid "We can't play this"
+msgstr "Não é possível reproduzir isso"

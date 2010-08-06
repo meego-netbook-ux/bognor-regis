@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bognor-regis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-28 09:34+0000\n"
+"PO-Revision-Date: 2009-08-14 14:10-0800\n"
+"Last-Translator: Auke Kok <auke-jan.h.kok@intel.com>\n"
+"Language-Team: Dutch <nl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
+
+#: ../src/bognor-local-queue-gst.c:386 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Afspeellijst"
+
+#: ../src/bognor-queue.c:285
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "Sorry, %s kan niet gespeeld worden, geen correcte plugin gevonden."
+
+#: ../src/bognor-queue.c:287
+#, c-format
+msgid ""
+"Sorry, we can't play %s, as we don't have the correct plugin. You could try "
+"searching for ❝gstreamer codecs❞ on the web."
+msgstr ""
+"Sorry, %s kan niet gespeeld worden, geen correcte plugin gevonden. Je kunt "
+"proberen te zoeken naar ❝gstreamer codecs❞ op het internet."
+
+#: ../src/bognor-queue.c:291
+msgid "We can't play this"
+msgstr "Kan dit niet afspelen"

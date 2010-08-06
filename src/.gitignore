@@ -1,0 +1,9 @@
+bognor-marshal.c
+bognor-marshal.h
+bognor-player-bindings.h
+bognor-queue-glue.h
+bognor-queue-manager-glue.h
+bognor-regis-daemon
+stamp-bognor-player-bindings.h
+stamp-bognor-queue-glue.h
+stamp-bognor-queue-manager-glue.h

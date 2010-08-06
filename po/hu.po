@@ -1,0 +1,34 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bognor-regis\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-09 19:10+0000\n"
+"PO-Revision-Date: 2009-12-22 22:48+0100\n"
+"Last-Translator: Gergely Lónyai <aleph@mandriva.org>\n"
+"Language-Team: Hungarian <aleph@mandriva.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../src/bognor-local-queue-gst.c:361
+#: ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Lejátszási lista"
+
+#: ../src/bognor-queue.c:721
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "Bocsi, de a %s nem lejátszható, mert nem találok hozzá megfelelő plugint. Próbálj találni hozzá megfelelő ❝gstreamer codecs❞-et a weben."
+
+#: ../src/bognor-queue.c:724
+msgid "We can't play this"
+msgstr "Ez nem lejátszható"
+

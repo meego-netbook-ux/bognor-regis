@@ -1,0 +1,35 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Jean Cayron <jean.cayron@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-17 09:32+0000\n"
+"PO-Revision-Date: 2009-10-03 21:02+0000\n"
+"Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
+"Language-Team: Walloon <linux-wa@walon.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.0\n"
+
+#: ../src/bognor-local-queue-gst.c:376 ../src/bognor-local-queue-helix.c:357
+msgid "Playqueue"
+msgstr "Djouwer cawêye"
+
+#: ../src/bognor-queue.c:231
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin. You could try searching for ❝gstreamer codecs❞ on the web."
+msgstr "Dji rgrete, nos n' savans djouwer %s paski ns n' avans nén l' bon tchôke-divins. Vos pôrîz sayî d' cachî après ❝gstreamer codecs❞ sol waibe."
+
+#: ../src/bognor-queue.c:235
+msgid "We can't play this"
+msgstr "Nos n' savans nén djouwer çouci"
+
+#: ../src/bognor-queue.c:229
+#, c-format
+msgid "Sorry, we can't play %s, as we don't have the correct plugin."
+msgstr "Dji rgrete, nos n' savans djouwer %s paski ns n' avans nén l' bon tchôke-divins."

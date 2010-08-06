@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/">
+  <interface name="org.moblin.BognorRegis.Player">
+    <method name="Play" />
+    <method name="Stop" />
+
+    <method name="SetPosition">
+      <arg type="d" name="position" direction="in" />
+    </method>
+
+    <method name="ShowUri">
+      <arg type="s" name="uri" direction="in" />
+      <arg type="s" name="mimetype" direction="in" />
+    </method>
+
+    <method name="CanShowVisual">
+      <arg type="b" name="can_show_visual" direction="out" />
+    </method>
+
+    <method name="ForceVisualMode"/>
+
+    <signal name="UriCompleted">
+      <arg type="s" name="uri" />
+    </signal>
+
+    <signal name="CanShowVisualChanged">
+      <arg type="b" name="can_show_visual" />
+    </signal>
+
+    <signal name="PositionChanged">
+      <arg type="d" name="position" />
+    </signal>
+  </interface>
+</node>
+

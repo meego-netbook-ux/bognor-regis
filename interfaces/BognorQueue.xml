@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/">
+  <interface name="org.moblin.BognorRegis.Queue">
+    <method name="Play" />
+    <method name="Stop" />
+    <method name="Next" />
+    <method name="Previous" />
+
+    <method name="SetPosition">
+      <arg type="d" name="position" direction="in" />
+    </method>
+
+    <method name="GetPosition">
+      <arg type="d" name="position" direction="out" />
+    </method>
+
+    <method name="GetState">
+      <arg type="i" name="state" direction="out" />
+    </method>
+
+    <method name="SetIndex">
+      <arg type="i" name="index" direction="in" />
+    </method>
+
+    <method name="GetIndex">
+      <arg type="i" name="index" direction="out" />
+    </method>
+
+    <method name="GetRepeatMode">
+      <arg type="i" name="repeat_mode" direction="out" />
+    </method>
+
+    <method name="SetRepeatMode">
+      <arg type="i" name="repeat_mode" direction="in" />
+    </method>
+
+    <method name="GetIndexUri">
+      <arg type="i" name="index" direction="in" />
+      <arg type="s" name="uri" direction="out" />
+      <arg type="s" name="mimetype" direction="out" />
+    </method>
+
+    <method name="ListUris">
+      <arg type="as" name="uris" direction="out" />
+    </method>
+
+    <method name="AppendUris">
+      <arg type="i" name="count" direction="in" />
+      <arg type="as" name="uris" direction="in" />
+      <arg type="as" name="mimetypes" direction="in" />
+    </method>
+
+    <method name="InsertUris">
+      <arg type="i" name="index" direction="in" />
+      <arg type="i" name="count" direction="in" />
+      <arg type="as" name="uris" direction="in" />
+      <arg type="as" name="mimetypes" direction="in" />
+    </method>
+
+    <method name="RemoveRange">
+      <arg type="i" name="index" direction="in" />
+      <arg type="i" name="count" direction="in" />
+    </method>
+
+    <method name="MoveItem">
+      <arg type="i" name="old_position" direction="in" />
+      <arg type="i" name="new_position" direction="in" />
+    </method>
+
+    <method name="GetName">
+      <arg type="s" name="name" direction="out" />
+    </method>
+
+    <signal name="UriAdded">
+      <arg type="s" name="uri" />
+      <arg type="i" name="position" />
+    </signal>
+
+    <signal name="UriRemoved">
+      <arg type="s" name="uri" />
+      <arg type="i" name="position" />
+    </signal>
+
+    <signal name="ItemMoved">
+      <arg type="i" name="old_position" />
+      <arg type="i" name="new_position" />
+      <arg type="i" name="updated_index" />
+    </signal>
+
+    <signal name="IndexChanged">
+      <arg type="i" name="index" />
+    </signal>
+
+    <signal name="PositionChanged">
+      <arg type="d" name="position" />
+    </signal>
+
+    <signal name="StateChanged">
+      <arg type="i" name="state" />
+    </signal>
+
+  </interface>
+</node>

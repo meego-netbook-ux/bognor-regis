@@ -1,0 +1,33 @@
+# Bognor Catalan translation.
+# Copyright (C) 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the Bognor package.
+# Gil Forcada <gilforcada@guifi.net>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Bognor 2.x\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-28 15:16+0000\n"
+"PO-Revision-Date: 2009-08-15 18:45+0200\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/bognor-local-queue-gst.c:357 ../src/bognor-local-queue-helix.c:329
+msgid "Playqueue"
+msgstr "Cua de reproducció"
+
+#: ../src/bognor-queue.c:695
+#, c-format
+msgid ""
+"Sorry, we can't play %s, as we don't have the correct plugin. You could try "
+"searching for ❝gstreamer codecs❞ on the web."
+msgstr ""
+"No es pot reproduir %s ja que no hi ha el connector necessari. Podeu mirar "
+"de buscar «gstreamer codecs» per Internet."
+
+#: ../src/bognor-queue.c:698
+msgid "We can't play this"
+msgstr "No es pot reproduir"
