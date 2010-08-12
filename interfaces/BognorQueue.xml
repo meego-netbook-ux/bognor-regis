@@ -55,6 +55,19 @@
       <arg type="i" name="repeat_mode" direction="in" />
     </method>
 
+    <method name="GetIndexMetadata">
+      <arg type="i" name="index" direction="in" />
+      <arg type="s" name="title" direction="out" />
+      <arg type="s" name="artist" direction="out" />
+      <arg type="s" name="album" direction="out" />
+    </method>
+
+    <method name="GetNextMetadata">
+      <arg type="s" name="title" direction="out" />
+      <arg type="s" name="artist" direction="out" />
+      <arg type="s" name="album" direction="out" />
+    </method>
+
     <method name="GetIndexUri">
       <arg type="i" name="index" direction="in" />
       <arg type="s" name="uri" direction="out" />

@@ -475,7 +475,7 @@ bognor_queue_previous (BognorQueue *queue,
     priv->current_index--;
 
     if (priv->current_index < 0) {
-        if ((priv->mode & 0x80) == BOGNOR_QUEUE_MODE_REPEATING) {
+        if ((priv->mode & 0x7f) == BOGNOR_QUEUE_MODE_REPEATING) {
             /* at the head of the queue */
             bognor_queue_set_index (queue, g_queue_get_length(priv->play_queue) -1, error);
             return TRUE;
@@ -935,6 +935,72 @@ bognor_queue_get_index (BognorQueue *queue,
 }
 
 gboolean
+bognor_queue_get_index_metadata (BognorQueue   *queue,
+                                 int            index,
+                                 char         **title,
+                                 char         **artist,
+                                 char         **album,
+                                 GError        **error)
+{
+    BognorQueuePrivate *priv = queue->priv;
+    BognorQueueItem *item;
+    BgrItem *bgr;
+    const char *str;
+
+    item = g_queue_peek_nth (priv->play_queue, index);
+    if (item == NULL) {
+        if (error != NULL) {
+            *error = g_error_new (BOGNOR_QUEUE_ERROR,
+                                  BOGNOR_QUEUE_ERROR_OUT_OF_RANGE,
+                                  "%d is out of range for queue with %d items",
+                                  index, g_queue_get_length (priv->play_queue));
+        }
+        return FALSE;
+    }
+
+    bgr = bognor_queue_item_get_item(item);
+    if(bgr) {
+        *title = g_strdup(bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_TITLE));
+        *album = g_strdup(bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ALBUM));
+        *artist = g_strdup(bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ARTIST));
+//        g_print("get index meta title: %s\n", bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_TITLE));
+//        g_print("get index meta title: %s\n", bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ALBUM));
+//        g_print("get index meta title: %s\n", bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ARTIST));
+    } else {
+        if (error != NULL) {
+            *error = g_error_new (BOGNOR_QUEUE_ERROR,
+                                  BOGNOR_QUEUE_ERROR_EMPTY,
+                                  "TRACKER: metadata is not available for item %d", index);
+        }
+        return FALSE;
+    }
+    return TRUE;
+}
+
+gboolean
+bognor_queue_get_next_metadata (BognorQueue   *queue,
+                                char         **title,
+                                char         **artist,
+                                char         **album,
+                                GError       **error)
+{
+    BognorQueuePrivate *priv = queue->priv;
+    BognorQueueItem *item;
+    int index = bognor_queue_next_index(queue);
+//    g_print("next idx = %d\n", index);
+    if (index == -1) {
+        if (error != NULL) {
+            *error = g_error_new (BOGNOR_QUEUE_ERROR,
+                                  BOGNOR_QUEUE_ERROR_EMPTY,
+                                  "no more next");
+        }
+        return FALSE;
+    } else {
+        return bognor_queue_get_index_metadata(queue, index, title, artist, album, error);
+    }
+}
+
+gboolean
 bognor_queue_get_index_uri (BognorQueue *queue,
                             int          index,
                             char       **uri,
@@ -1056,3 +1122,43 @@ bognor_queue_get_count (BognorQueue *queue)
 
     return g_queue_get_length(priv->play_queue);
 }
+
+int
+bognor_queue_next_index (BognorQueue *queue)
+{
+    BognorQueuePrivate *priv = queue->priv;
+    int index;
+
+    if ((priv->mode & 0x7f) == BOGNOR_QUEUE_MODE_SINGLE_REPEATING) {
+        if( (priv->mode & 0x80) == BOGNOR_QUEUE_MODE_SHUFFLE) {
+            return priv->shuffle_array[priv->current_index];
+        } else {
+            return priv->current_index;
+        }
+    }
+
+    if (priv->current_index == (bognor_queue_get_count(queue)-1)) {
+        // last song
+        if ((priv->mode & 0x7f) == BOGNOR_QUEUE_MODE_NORMAL) {
+            // play no more
+            return -1;
+        } else {
+            // repeat mode
+            if( (priv->mode & 0x80) == BOGNOR_QUEUE_MODE_SHUFFLE) {
+                return priv->shuffle_array[0];
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    index = priv->current_index+1;
+    if( (priv->mode & 0x80) == BOGNOR_QUEUE_MODE_SHUFFLE) {
+        // shuffle
+        return priv->shuffle_array[index];
+    } else {
+        // shuffle
+        return index;
+    }
+}
+

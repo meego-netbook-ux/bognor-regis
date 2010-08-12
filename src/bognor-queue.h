@@ -151,6 +151,17 @@ gboolean bognor_queue_get_current_index (BognorQueue   *queue,
 gboolean bognor_queue_get_index (BognorQueue   *queue,
                                  int           *index,
                                  GError       **error);
+gboolean bognor_queue_get_index_metadata (BognorQueue   *queue,
+                                          int            index,
+                                          char         **title,
+                                          char         **artist,
+                                          char         **album,
+                                          GError       **error);
+gboolean bognor_queue_get_next_metadata (BognorQueue   *queue,
+                                         char         **title,
+                                         char         **artist,
+                                         char         **album,
+                                         GError       **error);
 gboolean bognor_queue_set_repeat_mode (BognorQueue   *queue,
                                        int            mode,
                                        GError       **error);
@@ -175,6 +186,7 @@ gboolean bognor_queue_get_name (BognorQueue          *queue,
                                 char                **name,
                                 GError              **error);
 int bognor_queue_get_count (BognorQueue *queue);
+int bognor_queue_next_index (BognorQueue *queue);
 
 G_END_DECLS
 

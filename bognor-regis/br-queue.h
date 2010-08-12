@@ -61,10 +61,16 @@ typedef void (*BrQueueListUrisCallback) (BrQueue       *queue,
                                          const char   **uris,
                                          const GError  *error,
                                          gpointer       userdata);
-typedef void (*BrQueueGetIndexCallback) (BrQueue      *queue,
-                                         int           index,
-                                         const GError *error,
-                                         gpointer      userdata);
+typedef void (*BrQueueGetIndexCallback) (BrQueue       *queue,
+                                         int            index,
+                                         const GError  *error,
+                                         gpointer       userdata);
+typedef void (*BrQueueGetMetadataCallback) (BrQueue      *queue,
+                                            const char   *title,
+                                            const char   *artist,
+                                            const char   *album,
+                                            const GError *error,
+                                            gpointer      userdata);
 typedef void (*BrQueueGetNameCallback) (BrQueue      *queue,
                                         const char   *name,
                                         const GError *error,
@@ -130,27 +136,34 @@ void br_queue_get_position (BrQueue                   *queue,
 void br_queue_set_mute (BrQueue    *queue,
                         gboolean    mute);
 void br_queue_get_mute (BrQueue                   *queue,
-                        BrQueueGetMuteCallback cb,
+                        BrQueueGetMuteCallback     cb,
                         gpointer                   userdata);
 void br_queue_set_volume (BrQueue    *queue,
                           double      volume);
 void br_queue_get_volume (BrQueue                   *queue,
-                          BrQueueGetVolumeCallback cb,
+                          BrQueueGetVolumeCallback   cb,
                           gpointer                   userdata);
 void br_queue_get_state (BrQueue                *queue,
                          BrQueueGetStateCallback cb,
                          gpointer                userdata);
 void br_queue_set_index (BrQueue *queue,
                          int      index);
-void br_queue_get_index (BrQueue                *queue,
-                         BrQueueGetIndexCallback cb,
-                         gpointer                userdata);
-void br_queue_get_duration (BrQueue                *queue,
-                            BrQueueGetDurationCallback cb,
-                            gpointer                     userdata);
-void br_queue_get_repeat_mode (BrQueue                *queue,
-                         BrQueueGetRepeatModeCallback cb,
-                         gpointer                     userdata);
+void br_queue_get_index (BrQueue                 *queue,
+                         BrQueueGetIndexCallback  cb,
+                         gpointer                 userdata);
+void br_queue_get_index_metadata (BrQueue                    *queue,
+                                  int                         index,
+                                  BrQueueGetMetadataCallback  cb,
+                                  gpointer                    userdata);
+void br_queue_get_next_metadata (BrQueue                    *queue,
+                                 BrQueueGetMetadataCallback  cb,
+                                 gpointer                    userdata);
+void br_queue_get_duration (BrQueue                    *queue,
+                            BrQueueGetDurationCallback  cb,
+                            gpointer                    userdata);
+void br_queue_get_repeat_mode (BrQueue                      *queue,
+                               BrQueueGetRepeatModeCallback  cb,
+                               gpointer                      userdata);
 void br_queue_set_repeat_mode(BrQueue *queue,
                               int      mode);
 void br_queue_get_index_uri (BrQueue                   *queue,

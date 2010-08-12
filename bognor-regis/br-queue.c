@@ -679,6 +679,106 @@ br_queue_get_index (BrQueue                *queue,
 }
 
 static void
+get_metadata_reply (DBusGProxy *proxy,
+                    char       *OUT_title,
+                    char       *OUT_artist,
+                    char       *OUT_album,
+                    GError     *error,
+                    gpointer    userdata)
+{
+    struct _AsyncClosure *data = (struct _AsyncClosure *) userdata;
+    BrQueueGetMetadataCallback cb;
+
+    cb = (BrQueueGetMetadataCallback) (data->cb);
+
+    if (error) {
+        OUT_title = NULL;
+        OUT_artist = NULL;
+        OUT_album = NULL;
+    }
+
+    cb (data->queue, OUT_title, OUT_artist, OUT_album, error, data->userdata);
+
+    if (error) {
+        g_error_free (error);
+    } else {
+        g_free (OUT_title);
+        g_free (OUT_artist);
+        g_free (OUT_album);
+    }
+
+    g_free (data);
+}
+
+/**
+ * br_queue_get_index_metadata:
+ * @queue: A #BrQueue
+ * @index: The index of the item being requested
+ * @cb: The callback for when the metadata is returned
+ * @userdata: The data to be passed to @cb
+ *
+ * Requests the title, artist and album of the item at @index position
+ * in the queue represented by @queue.
+ * This is an asynchronous call, and @cb will be called with @userdata whenever
+ * the data has been returned.
+ */
+void
+br_queue_get_index_metadata (BrQueue                        *queue,
+                             int                         index,
+                             BrQueueGetMetadataCallback  cb,
+                             gpointer                    userdata)
+{
+    struct _AsyncClosure *data;
+    BrQueuePrivate *priv;
+
+    g_return_if_fail (IS_BR_QUEUE (queue));
+
+    priv = queue->priv;
+
+    data = g_new (struct _AsyncClosure, 1);
+    data->queue = queue;
+    data->cb = G_CALLBACK (cb);
+    data->userdata = userdata;
+
+    org_moblin_BognorRegis_Queue_get_index_metadata_async (priv->proxy, index,
+                                                           get_metadata_reply,
+                                                           data);
+}
+
+/**
+ * br_queue_get_next_metadata:
+ * @queue: A #BrQueue
+ * @cb: The callback for when the metadata is returned
+ * @userdata: The data to be passed to @cb
+ *
+ * Requests the title, artist and album of the item next
+ * in the queue represented by @queue.
+ * This is an asynchronous call, and @cb will be called with @userdata whenever
+ * the data has been returned.
+ */
+void
+br_queue_get_next_metadata (BrQueue                    *queue,
+                            BrQueueGetMetadataCallback  cb,
+                            gpointer                    userdata)
+{
+    struct _AsyncClosure *data;
+    BrQueuePrivate *priv;
+
+    g_return_if_fail (IS_BR_QUEUE (queue));
+
+    priv = queue->priv;
+
+    data = g_new (struct _AsyncClosure, 1);
+    data->queue = queue;
+    data->cb = G_CALLBACK (cb);
+    data->userdata = userdata;
+
+    org_moblin_BognorRegis_Queue_get_next_metadata_async (priv->proxy,
+                                                          get_metadata_reply,
+                                                           data);
+}
+
+static void
 get_repeat_mode_reply (DBusGProxy *proxy,
                        int         OUT_repeat_mode,
                        GError     *error,

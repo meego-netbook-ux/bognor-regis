@@ -62,6 +62,33 @@ get_double_cb(BrQueue        *queue,
     g_main_loop_quit (mainloop);
 }
 
+static void
+get_uri_cb(BrQueue        *queue,
+           const char     *uri,
+           const char     *mimetype,
+           const GError   *error,
+           gpointer        userdata)
+{
+    g_print("return:uri: %s\n"
+            "  mimetype: %s\n", uri, mimetype);
+    g_main_loop_quit (mainloop);
+}
+
+static void
+get_meta_cb(BrQueue        *queue,
+            const char     *title,
+            const char     *artist,
+            const char     *album,
+            const GError   *error,
+            gpointer        userdata)
+{
+    g_print("return:\n"
+            "   title: %s\n"
+            "  artist: %s\n"
+            "   album: %s\n", title, artist, album);
+    g_main_loop_quit (mainloop);
+}
+
 int
 main (int    argc,
       char **argv)
@@ -75,9 +102,10 @@ main (int    argc,
     local_queue = br_queue_new_local ();
 
     if (argv[1] == NULL) {
-        g_print ("Usage: bognor-regis <uri | play | stop | ls |list-queues | remove |\n"
-                 "                     get-index | get-mode | get-duration | set-mode [mode] >\n"
-                 "                     get-mute | set-mute | get-volume | set-volume [volume] >\n");
+        g_print ("Usage: bognor-regis < [uri] | play | stop | ls | list-queues | remove |\n"
+                 "                     get-index | get-mode | get-duration | set-mode [mode] |\n"
+                 "                     get-mute | set-mute | get-volume | set-volume [volume] |\n"
+                 "                     get-uri [index] | get-index-meta [index] | get-next-meta >\n");
         /* probably also print current list */
         return -1;
     }
@@ -116,6 +144,21 @@ main (int    argc,
         return 0;
     } else if (g_str_equal (argv[1], "get-mode")) {
         br_queue_get_repeat_mode(local_queue, get_int_cb, NULL);
+        mainloop = g_main_loop_new (NULL, FALSE);
+        g_main_loop_run (mainloop);
+        return 0;
+    } else if (g_str_equal (argv[1], "get-uri")) {
+        br_queue_get_index_uri(local_queue, atoi(argv[1]), get_uri_cb, NULL);
+        mainloop = g_main_loop_new (NULL, FALSE);
+        g_main_loop_run (mainloop);
+        return 0;
+    } else if (g_str_equal (argv[1], "get-index-meta")) {
+        br_queue_get_index_metadata(local_queue, atoi(argv[2]), get_meta_cb, NULL);
+        mainloop = g_main_loop_new (NULL, FALSE);
+        g_main_loop_run (mainloop);
+        return 0;
+    } else if (g_str_equal (argv[1], "get-next-meta")) {
+        br_queue_get_next_metadata(local_queue, get_meta_cb, NULL);
         mainloop = g_main_loop_new (NULL, FALSE);
         g_main_loop_run (mainloop);
         return 0;
