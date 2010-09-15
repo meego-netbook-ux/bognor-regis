@@ -1036,6 +1036,12 @@ bognor_queue_set_repeat_mode (BognorQueue *queue,
 {
     BognorQueuePrivate *priv = queue->priv;
 
+    if (((priv->mode & 0x80) == BOGNOR_QUEUE_MODE_SHUFFLE) &&
+        ((mode & 0x80) != BOGNOR_QUEUE_MODE_SHUFFLE) ) {
+        if (priv->current_position != g_queue_peek_nth_link (priv->play_queue, priv->current_index)) {
+            priv->current_index = priv->shuffle_array[priv->current_index];
+        }
+    }
     if ((mode & 0x80) == BOGNOR_QUEUE_MODE_SHUFFLE) {
         bq_make_shuffle_list(queue);
         if (priv->state == BOGNOR_QUEUE_STATE_STOPPED && (priv->shuffle_array_size > 0)) {
