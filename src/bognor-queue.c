@@ -326,7 +326,6 @@ bognor_queue_play (BognorQueue *queue,
     BognorQueueClass *klass = BOGNOR_QUEUE_GET_CLASS (queue);
     BognorQueuePrivate *priv = queue->priv;
 
-    g_print ("Playing...\n");
     if (priv->current_position == NULL) {
         if (error != NULL) {
             *error = g_error_new (BOGNOR_QUEUE_ERROR,
@@ -698,20 +697,7 @@ bognor_queue_remove_range (BognorQueue *queue,
     int i;
     gboolean remove_current = FALSE;
 
-#if 0
-    nth = g_queue_peek_nth_link (priv->play_queue, index);
-    if (nth == NULL && error != NULL) {
-        if (error != NULL) {
-            *error = g_error_new (BOGNOR_QUEUE_ERROR,
-                                  BOGNOR_QUEUE_ERROR_OUT_OF_RANGE,
-                                  "%d is out of range for queue with %d items",
-                                  index, g_queue_get_length (priv->play_queue));
-        }
-        return FALSE;
-    }
-#endif
-
-    if (index > g_queue_get_length (priv->play_queue) ||
+    if (index >= g_queue_get_length (priv->play_queue) ||
         index + count > g_queue_get_length (priv->play_queue)) {
         if (error != NULL) {
             *error = g_error_new (BOGNOR_QUEUE_ERROR,
@@ -749,23 +735,43 @@ bognor_queue_remove_range (BognorQueue *queue,
         g_object_unref (item);
     }
 
+    int queue_len = g_queue_get_length(priv->play_queue);
+    int idx;
+    if (queue_len == 0) {
+        priv->current_position = NULL;
+        priv->current_index = BOGNOR_QUEUE_INDEX_END;
+        return TRUE;
+    }
+
     if (remove_current == TRUE) {
+        if (priv->current_index >= queue_len) {
+            idx = queue_len -1;
+        } else {
+            idx = priv->current_index;
+        }
         if ((priv->mode & 0x80) != BOGNOR_QUEUE_MODE_SHUFFLE) {
             bognor_queue_set_position (queue, 0.0, error);
-            bognor_queue_set_index (queue, 0, error);
+            bognor_queue_set_index (queue, idx, error);
         } else {
             bq_make_shuffle_list(queue);
-            if (priv->shuffle_array_size > 0) {
-                bognor_queue_set_index (queue, priv->shuffle_array[0], error);
-                priv->current_index = 0;
-            } else {
-                priv->current_position = NULL;
-                priv->current_index = BOGNOR_QUEUE_INDEX_END;
-            }
+            // empty queue is handled above
+            bognor_queue_set_index (queue, priv->shuffle_array[idx], error);
+            priv->current_index = idx;
         }
     } else {
         if ((priv->mode & 0x80) != BOGNOR_QUEUE_MODE_SHUFFLE) {
             bq_sync_current_index(queue);
+        } else {
+            bq_make_shuffle_list(queue);
+            // find current item
+            idx = g_queue_link_index(priv->play_queue, priv->current_position);
+            int j;
+            for (j = 0; j < queue_len; j++) {
+                if ( idx == priv->shuffle_array[j] ) {
+                    priv->current_index = j;
+                    break;
+                }
+            }
         }
     }
     return TRUE;
@@ -963,9 +969,6 @@ bognor_queue_get_index_metadata (BognorQueue   *queue,
         *title = g_strdup(bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_TITLE));
         *album = g_strdup(bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ALBUM));
         *artist = g_strdup(bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ARTIST));
-//        g_print("get index meta title: %s\n", bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_TITLE));
-//        g_print("get index meta title: %s\n", bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ALBUM));
-//        g_print("get index meta title: %s\n", bgr_item_get_metadata (bgr, BGR_ITEM_METADATA_ARTIST));
     } else {
         if (error != NULL) {
             *error = g_error_new (BOGNOR_QUEUE_ERROR,
@@ -987,7 +990,6 @@ bognor_queue_get_next_metadata (BognorQueue   *queue,
     BognorQueuePrivate *priv = queue->priv;
     BognorQueueItem *item;
     int index = bognor_queue_next_index(queue);
-//    g_print("next idx = %d\n", index);
     if (index == -1) {
         if (error != NULL) {
             *error = g_error_new (BOGNOR_QUEUE_ERROR,
@@ -1062,7 +1064,11 @@ bognor_queue_get_duration (BognorQueue *queue,
                            GError     **error)
 {
     BognorQueuePrivate *priv = queue->priv;
-    *duration = bognor_queue_item_get_duration(priv->current_position->data);
+    if (priv->current_position == NULL) {
+        *duration = 0;
+    } else {
+        *duration = bognor_queue_item_get_duration(priv->current_position->data);
+    }
     return TRUE;
 }
 
