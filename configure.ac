@@ -3,7 +3,7 @@
 # An even micro number indicates a released version.
 m4_define(bognor_major_version, 0)
 m4_define(bognor_minor_version, 6)
-m4_define(bognor_micro_version, 11)
+m4_define(bognor_micro_version, 12)
 
 m4_define([bognor_version],
           [bognor_major_version.bognor_minor_version.bognor_micro_version])
